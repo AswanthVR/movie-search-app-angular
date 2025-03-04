@@ -1,0 +1,45 @@
+<div class="movie-details">
+  <span style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <p [routerLink]="['/result']" style="margin: 0; font-size: small ; color: black; cursor: pointer;"> << Back To Home</p>
+    <h2 class="title" style="flex-grow: 1; text-align: center; margin: 0;">{{ movie?.title }}</h2>
+  </span>
+  
+  <h3 *ngIf="movie?.tagline" class="tagline">"{{ movie?.tagline }}"</h3>
+  
+  <div class="movie-content">
+    <img 
+      *ngIf="movie?.poster_path"
+      [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+      [alt]="movie?.title"
+      class="poster"
+    />
+    
+    <div class="details">
+      <p><strong>Release Date:</strong> {{ movie?.release_date }}</p>
+      <p><strong>Runtime:</strong> {{ movie?.runtime }} minutes</p>
+      <p><strong>Vote Average:</strong> ⭐ {{ movie?.vote_average }} ({{ movie?.vote_count }} votes)</p>
+      <p><strong>Budget:</strong> ${{ movie?.budget | number }}</p>
+      <p><strong>Revenue:</strong> ${{ movie?.revenue | number }}</p>
+      <p><strong>Overview:</strong> {{ movie?.overview }}</p>
+      <!-- <div class="view-more"> -->
+        <!-- <button class="view-more-btn" routerLink="{{ movie?.id }}/details">View More Details >> </button> -->
+        <button class="view-more-btn" routerLink="more-info" [queryParams]="{movie:movie | json}">View More Details >> </button>
+      <!-- </div> -->
+    </div>
+    
+  </div>
+  
+  <div *ngIf="trailers.length > 0" class="trailers">
+    <h3 class="trailers-head">Trailers</h3>
+    <div class="trailer-container">
+      <div *ngFor="let trailer of trailers" class="trailer">
+        <iframe 
+          [src]="trailer.safeUrl"
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+        <p>{{ trailer.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

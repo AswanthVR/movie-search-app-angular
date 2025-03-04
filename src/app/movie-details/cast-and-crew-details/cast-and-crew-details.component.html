@@ -1,0 +1,59 @@
+<div class="movie-full-details">
+    <h2 class="title">{{ movie?.title }} </h2>
+  
+    <!-- Genres & Keywords -->
+    <div class="extra-details">
+      <h3>Genres</h3>
+      <p *ngFor="let genre of movie?.genres" class="genre">{{ genre.name }}</p>
+  
+      <h3>Keywords</h3>
+      <p *ngFor="let keyword of movie?.keywords?.keywords" class="keyword">{{ keyword.name }}</p>
+    </div>
+  
+    <!-- Cast Section -->
+    <div *ngIf="movie?.credits?.cast?.length > 0">
+      <h3>Top Cast</h3>
+      <div class="cast-container">
+        <div *ngFor="let actor of movie?.credits.cast?.slice(0, 10)" class="cast-card">
+          <img 
+            *ngIf="actor.profile_path"
+            [src]="'https://image.tmdb.org/t/p/w185' + actor.profile_path" 
+            [alt]="actor.name"
+          />
+          <p><strong>{{ actor.name }}</strong> as {{ actor.character }}</p>
+        </div>
+      </div>
+    </div>
+  
+        <!-- Production Companies -->
+        <div *ngIf="movie?.production_companies?.length > 0">
+          <h3>Production Companies</h3>
+          <div class="company-container">
+            <div *ngFor="let company of movie.production_companies" class="company-card">
+              <img 
+                *ngIf="company.logo_path"
+                [src]="'https://image.tmdb.org/t/p/w185' + company.logo_path" 
+                [alt]="company.name"
+              />
+              <p>{{ company.name }}</p>
+            </div>
+          </div>
+        </div>
+
+
+    <!-- Crew Section -->
+    <div *ngIf="movie?.credits?.crew?.length > 0">
+      <h3>Crew</h3>
+      
+      <div class="crew-container" >
+        <p *ngFor="let crew of movie?.credits.crew" class="crew">{{ crew.job }}: {{ crew.name }}</p>
+      </div>
+    </div>
+  
+
+  
+    <!-- Back to Main Page Button -->
+    <div class="back-button">
+      <button [routerLink]="['/details', movie?.id]">⬅ Back to Movie Details</button>    </div>
+  </div>
+  

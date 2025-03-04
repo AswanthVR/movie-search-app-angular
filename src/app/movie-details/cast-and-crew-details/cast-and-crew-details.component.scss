@@ -1,0 +1,105 @@
+/* Main container */
+.movie-full-details {
+  max-width: 100%;
+  margin: 40px;
+  padding: 20px;
+  background: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 128, 128, 0.3);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Title */
+.title {
+  font-size: 32px;
+  text-align: center;
+  color: #008080;
+  margin-bottom: 20px;
+}
+
+/* Extra Details - Genres & Keywords */
+.extra-details {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.genre, .keyword {
+  display: inline-block;
+  background: #008080;
+  color: white;
+  padding: 5px 12px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Cast & Crew Sections */
+.cast-container, .company-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px; 
+}
+
+/* Cast & Crew Cards */
+.cast-card, .company-card {
+  text-align: center;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 128, 128, 0.2);
+}
+
+.cast-card img, .company-card img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.crew-container
+{
+    height: 300px;
+    overflow: scroll;
+}
+/* Crew List */
+.crew {
+  font-size: 16px;
+  padding: 8px;
+  background: #e6f7f7;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* Back Button */
+.back-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  background: #008080;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #006666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cast-container, .company-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+

@@ -1,0 +1,67 @@
+ 
+.movie-details {
+    max-width: 100%;
+    padding: 30px;
+    margin: 20px;
+    // background: #1e1e1e;
+    background: rgb(2, 159, 159);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .title {
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    font-weight: bolder;
+    font-family: "Lexend", sans-serif;
+    margin-bottom: 10px;
+  }
+  .tagline {
+    text-align: center; 
+    color: rgb(0, 61, 61);
+  }
+  .movie-content { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 35px;
+  }
+  .poster {
+    max-width: 250px;
+    border-radius: 8px;
+  }
+  .details {
+    flex: 1;
+    font-size: 1rem;
+  }
+  .trailers {
+    margin-top: 30px;
+    // width: 300px;
+  }
+  .trailer-container {
+    // display: flex;
+    // flex-wrap: wrap;
+    gap: 10px;
+  }
+  .trailer iframe {
+    width: 100%; 
+    height: 500px;
+    border-radius: 8px;
+  }
+
+
+  .trailers-head{
+    text-align: center;
+    color: black;
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
+  }
+
+  .view-more-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }

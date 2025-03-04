@@ -1,0 +1,127 @@
+<app-search></app-search>
+
+<div>
+    <div class="loader" *ngIf="loading">
+        <mat-spinner></mat-spinner> 
+    </div>  
+
+    <div *ngIf="!loading && movies.length===0 && !searchPerformed">
+        <h3 style="color: teal; text-align: center; justify-content: center; height: 80vh; align-items: center; display: flex;">
+            Search for Movies....
+        </h3>
+    </div>
+    
+    <div *ngIf="!loading && movies.length===0 && searchPerformed">
+        <h3 style="color: red; text-align: center; justify-content: center; height: 80vh; align-items: center; display: flex;">
+            No movies found. Try another search.
+        </h3>
+    </div>
+
+
+    
+    <div  *ngIf="searchPerformed && !loading && movies.length>0" class="movie-display">
+        <div class="filter-bar">
+          
+            <div class="view-toggle">
+                <!-- <button class="toggle-btn" (click)="toggleView()">Change view</button> -->
+                <!-- <button class="toggle-btn" [routerLink]="['/result']">Table View</button> -->
+                <button class="toggle-btn" [routerLink]="['grid']">Grid View</button>
+            </div>
+              <!-- //filters -->
+            <div>
+                <label for="filterTitle">Filter by Title:</label>
+                <input type="text" [(ngModel)]="filterTitle"  (input)="applyFilters()" placeholder="filter by title..." />
+            </div>  
+            
+        </div>
+       
+    
+
+    <!-- table view -->
+    <h1 class="search-results">Results for "{{searchTerm}}"</h1>
+    
+    <h3 *ngIf="filteredMovies.length===0" style="color: teal; text-align: center; justify-content: center; height: 80vh; align-items: center; display: flex;">
+        No movies found.
+    </h3>
+
+
+    <div id="movie-table-container" *ngIf="tableView && filteredMovies.length>0">
+      
+       <dx-data-grid  #dataGrid
+        [dataSource]="movies"
+        keyExpr="id"
+        [showBorders]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        (onExporting)="onExporting($event)"
+        >
+        <dxo-export
+        [enabled]="true"
+        [formats]="['pdf']"
+        [allowExportSelectedData]="true"
+         ></dxo-export>
+
+
+        <dxo-selection mode="multiple"></dxo-selection>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel [visible]="true"></dxo-search-panel> 
+
+        <dxi-column [fixed]="true" dataField="title" caption="Title"></dxi-column>
+        <dxi-column dataField="release_date" caption="Release Date"></dxi-column>
+        <dxi-column dataField="vote_average" caption="Rating"></dxi-column>
+            <dxo-editing
+                    mode="popup"
+                    [allowUpdating]="true"
+                    [allowDeleting]="true"
+                    [allowAdding]="true">
+            </dxo-editing>
+        
+         
+    </dx-data-grid>
+    
+    </div>
+ 
+</div>
+</div> 
+
+
+
+<!-- <table id="movie-table" >
+    <thead>
+        <tr>
+            <th (click)="sortMovies('title')">Title
+                <img width="50" height="50" [src]="sortOrder['Title']==='asc' ?
+                'https://img.icons8.com/ios-filled/50/sort-up.png'
+                :
+                'https://img.icons8.com/ios-filled/50/sort-down.png'
+                " alt="sort-down"/>
+            </th>
+            <th (click)="sortMovies('Year')">Release Date
+                <img width="50" height="50" 
+                [src]="sortOrder['Year']==='asc' ?
+                'https://img.icons8.com/ios-filled/50/sort-up.png'
+                :
+                'https://img.icons8.com/ios-filled/50/sort-down.png'"
+                alt="sort-down"/></th>
+            <th>Poster</th>
+            <th>Rating </th>
+        </tr>
+    </thead>
+    <tbody id="movie-table-body">
+        <tr *ngFor="let movie of filteredMovies">
+            <td>{{movie.title}}</td>
+            <td>{{movie.release_date}}</td>
+            <td>
+                <a [routerLink]="['/details',movie.id]">
+             <img [src]="getMoviePoster(movie)" alt="{{ movie?.title }}" />
+
+            </a>
+              </td>
+           
+            <td>{{movie.vote_average}}</td>
+           
+        </tr>
+    </tbody>
+</table> -->
