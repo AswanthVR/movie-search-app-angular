@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "jszip": [
+        "./node_modules/jszip/dist/jszip.min.js"
+      ],
+      "exceljs": [
+        "./node_modules/exceljs/dist/exceljs.min.js"
+      ]
+    }
+  },
+  "files": [
+    "src/main.ts",
+    "src/main.server.ts",
+    "server.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
